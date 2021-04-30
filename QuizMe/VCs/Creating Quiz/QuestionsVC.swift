@@ -45,6 +45,7 @@ class QuestionsVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
     @IBAction func submitButton(_ sender: Any) {
         quiz.name = quizNameField.text ?? "Quiz 1"
         quizzes.append(quiz)
+        quiz = Quiz(name: "", questions: [])
         print(quiz.name, "⚡️")
         performSegue(withIdentifier: "submitted", sender: self)
 

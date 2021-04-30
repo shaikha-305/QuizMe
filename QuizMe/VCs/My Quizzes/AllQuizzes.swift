@@ -6,9 +6,11 @@
 //
 
 import UIKit
+import AVFoundation
 class AllQuizzes: UIViewController, UITableViewDelegate, UITableViewDataSource{
     
     var cardIndex = 0
+    var buttonSoundEffect: AVAudioPlayer?
 
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
@@ -40,11 +42,24 @@ class AllQuizzes: UIViewController, UITableViewDelegate, UITableViewDataSource{
     }
     
     @IBAction func startQuiz(_ sender: Any) {
-        performSegue(withIdentifier: "startQuiz", sender: self)
+        let path = Bundle.main.path(forResource: "Button-soundEffect.mp3", ofType:nil)!
+        let url = URL(fileURLWithPath: path)
+
+        do {
+            buttonSoundEffect = try AVAudioPlayer(contentsOf: url)
+            buttonSoundEffect?.play()
+        } catch {
+            // couldn't load file :(
+        }
+        performSegue(withIdentifier: "startQuiz", sender: cardIndex)
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "quizDetails"{
             let vc = segue.destination as! QuizDetails
+            let index = sender as! Int
+            vc.selectedQuiz = quizzes[index]
+        }else if segue.identifier == "startQuiz"{
+            let vc = segue.destination as! AttemptingVC
             let index = sender as! Int
             vc.selectedQuiz = quizzes[index]
         }

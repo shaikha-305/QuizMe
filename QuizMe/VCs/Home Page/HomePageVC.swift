@@ -21,7 +21,6 @@ class HomePageVC: UIViewController {
     
     @IBAction func startQuiz(_ sender: Any) {
         performSegue(withIdentifier: "allQuizzes", sender: self)
-
     }
     
     /*

@@ -12,6 +12,7 @@ struct Quiz{
     var name: String
     var questions: [Question]
     var attempts = 0
+    var allGrades = 0
     var grades = 0
 }
 
