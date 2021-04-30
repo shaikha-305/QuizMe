@@ -6,3 +6,13 @@
 //
 
 import Foundation
+
+struct Quiz{
+    var questions: [Question]
+}
+
+struct Question{
+    var question: String
+    var answers: [String]
+    var correctAnswer: String
+}
