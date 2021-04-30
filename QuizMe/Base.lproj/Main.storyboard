@@ -16,16 +16,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="X - 1-2" translatesAutoresizingMaskIntoConstraints="NO" id="2Fz-o9-UJ0">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="X - 1-3" translatesAutoresizingMaskIntoConstraints="NO" id="2Fz-o9-UJ0">
                                 <rect key="frame" x="-8" y="0.0" width="431" height="896"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZZq-JO-dsY">
                                 <rect key="frame" x="31" y="411" width="352" height="341"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uJK-Tc-3X2">
-                                <rect key="frame" x="269" y="63" width="114" height="51"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sD4-oj-h4Q">
@@ -144,10 +140,10 @@
             </objects>
             <point key="canvasLocation" x="932" y="526"/>
         </scene>
-        <!--View Controller-->
+        <!--QuestionsVC-->
         <scene sceneID="eAZ-4G-1og">
             <objects>
-                <viewController id="43E-oS-xyk" sceneMemberID="viewController">
+                <viewController id="43E-oS-xyk" customClass="QuestionsVC" customModule="QuizMe" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Pju-jp-Z4h">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -161,7 +157,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="217" id="TYf-lX-kDg">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="questionCell" rowHeight="217" id="TYf-lX-kDg" customClass="TableViewCell" customModule="QuizMe" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="327" height="217"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="TYf-lX-kDg" id="3hB-8L-ocd">
@@ -193,15 +189,24 @@
                                             </subviews>
                                             <color key="backgroundColor" red="0.97247463460000005" green="0.97259098290000001" blue="0.97243505720000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="correctAnswerLbl" destination="JlW-ZD-0Z7" id="2Yd-lH-WdG"/>
+                                            <outlet property="questionLbl" destination="YHD-rs-fq7" id="zUN-12-j8w"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="43E-oS-xyk" id="bU0-8d-hdv"/>
+                                    <outlet property="delegate" destination="43E-oS-xyk" id="FOj-rr-hea"/>
+                                </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oyn-1G-Rho">
                                 <rect key="frame" x="40" y="109" width="334" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="Group 9"/>
                                 <connections>
-                                    <segue destination="fty-tF-ZEv" kind="presentation" modalPresentationStyle="fullScreen" id="ISO-XO-jDm"/>
+                                    <action selector="addQuestion:" destination="43E-oS-xyk" eventType="touchUpInside" id="IN0-oY-VBT"/>
+                                    <segue destination="fty-tF-ZEv" kind="presentation" identifier="questionDetails" modalPresentationStyle="fullScreen" id="ISO-XO-jDm"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name your Quiz" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QE8-eo-U0E">
@@ -214,21 +219,28 @@
                                 <rect key="frame" x="72" y="773" width="271" height="55"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="Group 10"/>
+                                <connections>
+                                    <action selector="submitButton:" destination="43E-oS-xyk" eventType="touchUpInside" id="ahJ-cf-8ZK"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="PTn-7T-Ux5"/>
                         <color key="backgroundColor" red="0.91079074140000005" green="0.94849961999999999" blue="0.96526843309999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="YhD-Dn-WlT"/>
+                    <connections>
+                        <outlet property="quizNameField" destination="QE8-eo-U0E" id="5CF-cs-WWZ"/>
+                        <outlet property="tableView" destination="xgK-YQ-NGe" id="VSz-xa-O1Y"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QrY-40-5Gf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="931.88405797101461" y="-289.28571428571428"/>
         </scene>
-        <!--View Controller-->
+        <!--Question Details-->
         <scene sceneID="JV4-Ym-nOm">
             <objects>
-                <viewController id="fty-tF-ZEv" sceneMemberID="viewController">
+                <viewController id="fty-tF-ZEv" customClass="QuestionDetails" customModule="QuizMe" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vsN-yg-EVX">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -238,7 +250,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="chevron-down"/>
                                 <connections>
-                                    <segue destination="43E-oS-xyk" kind="presentation" modalPresentationStyle="fullScreen" id="VM8-BH-3Ax"/>
+                                    <segue destination="43E-oS-xyk" kind="presentation" modalPresentationStyle="fullScreen" id="Jwf-uk-BBs"/>
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Rectangle 10" translatesAutoresizingMaskIntoConstraints="NO" id="u8Y-hl-Pkp">
@@ -263,7 +275,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="lorem ipsum lorem ipsum lorem ipsum?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dcu-QP-YRC">
                                 <rect key="frame" x="88" y="500" width="227" height="57"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="EuphemiaUCAS-Bold" family="Euphemia UCAS" pointSize="11"/>
+                                <fontDescription key="fontDescription" name="EuphemiaUCAS-Bold" family="Euphemia UCAS" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -272,18 +284,27 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="default"/>
                                 <state key="selected" image="selected"/>
+                                <connections>
+                                    <action selector="radioBtnB:" destination="fty-tF-ZEv" eventType="touchUpInside" id="dFI-0d-UI2"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A11-Kt-Lf5">
                                 <rect key="frame" x="87" y="405" width="35" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="default"/>
                                 <state key="selected" image="selected"/>
+                                <connections>
+                                    <action selector="radioBtnC:" destination="fty-tF-ZEv" eventType="touchUpInside" id="H80-b9-knp"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fqU-mC-f0n">
                                 <rect key="frame" x="87" y="279" width="35" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="default"/>
                                 <state key="selected" image="selected"/>
+                                <connections>
+                                    <action selector="radioBtnA:" destination="fty-tF-ZEv" eventType="touchUpInside" id="3qb-iW-y56"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ANSWER A" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cVH-Gs-2fp">
                                 <rect key="frame" x="129" y="581" width="192" height="49"/>
@@ -361,26 +382,60 @@
                                 <rect key="frame" x="305" y="344" width="27" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="check"/>
+                                <connections>
+                                    <action selector="checkAnswerB:" destination="fty-tF-ZEv" eventType="touchUpInside" id="90G-Nz-anA"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="155-mP-kK2">
                                 <rect key="frame" x="305" y="407" width="27" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="check"/>
+                                <connections>
+                                    <action selector="checkAnswerC:" destination="fty-tF-ZEv" eventType="touchUpInside" id="tva-aU-qga"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r6j-Fh-rPB">
                                 <rect key="frame" x="305" y="283" width="27" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="check"/>
+                                <connections>
+                                    <action selector="checkAnswerA:" destination="fty-tF-ZEv" eventType="touchUpInside" id="TSA-cj-p3y"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GCg-hn-FRk">
                                 <rect key="frame" x="139" y="80" width="213" height="43"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="Group 10"/>
+                                <connections>
+                                    <action selector="submitQuestion:" destination="fty-tF-ZEv" eventType="touchUpInside" id="jvw-Al-Fa5"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O42-P9-KzC">
+                                <rect key="frame" x="313" y="191" width="27" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="check"/>
+                                <connections>
+                                    <action selector="checkQuestion:" destination="fty-tF-ZEv" eventType="touchUpInside" id="3ox-Af-ZpT"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="lXr-UW-ZwK"/>
                         <color key="backgroundColor" red="0.97247463460000005" green="0.97259098290000001" blue="0.97243505720000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
+                    <connections>
+                        <outlet property="answerA" destination="Hoi-7C-Wix" id="TNE-uj-EWU"/>
+                        <outlet property="answerALbl" destination="cVH-Gs-2fp" id="mYs-4e-nk4"/>
+                        <outlet property="answerB" destination="U6k-Yp-AsL" id="ZCM-i6-sbT"/>
+                        <outlet property="answerBLbl" destination="Cji-iB-cu9" id="3zy-8Q-MN6"/>
+                        <outlet property="answerC" destination="jqP-UJ-gdT" id="jwp-oZ-fpl"/>
+                        <outlet property="answerCLbl" destination="mY8-h0-T0B" id="e0Y-bO-bFM"/>
+                        <outlet property="questionField" destination="fMZ-TG-iCS" id="TqI-mY-2oC"/>
+                        <outlet property="radioA" destination="fqU-mC-f0n" id="BbH-9M-xD1"/>
+                        <outlet property="radioB" destination="GTi-J0-6Nn" id="TDa-7y-2Iy"/>
+                        <outlet property="radioC" destination="A11-Kt-Lf5" id="6aS-US-35V"/>
+                        <outlet property="submittedQuestion" destination="Dcu-QP-YRC" id="aNi-PL-fVf"/>
+                        <segue destination="43E-oS-xyk" kind="presentation" identifier="back" modalPresentationStyle="fullScreen" id="EFe-Ci-DUl"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nRq-aZ-IXP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -397,7 +452,7 @@
         <image name="Group 9" width="334" height="66"/>
         <image name="Rectangle 1" width="211" height="456"/>
         <image name="Rectangle 10" width="412" height="830"/>
-        <image name="X - 1-2" width="504" height="998"/>
+        <image name="X - 1-3" width="504" height="998"/>
         <image name="check" width="128" height="128"/>
         <image name="chevron-down" width="54" height="50"/>
         <image name="default" width="524" height="476"/>

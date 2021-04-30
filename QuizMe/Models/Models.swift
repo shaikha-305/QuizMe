@@ -8,7 +8,9 @@
 import Foundation
 
 struct Quiz{
+    var name: String
     var questions: [Question]
+    var attempts = 0
 }
 
 struct Question{

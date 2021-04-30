@@ -15,6 +15,8 @@
 		1F05BFD8263B79F400B909EF /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F05BFD7263B79F400B909EF /* Models.swift */; };
 		1F05BFE5263B8F0F00B909EF /* HomePageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F05BFE4263B8F0F00B909EF /* HomePageVC.swift */; };
 		1F05BFEC263B948400B909EF /* QuestionsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F05BFEB263B948400B909EF /* QuestionsVC.swift */; };
+		1F05BFF2263B972E00B909EF /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F05BFF1263B972E00B909EF /* TableViewCell.swift */; };
+		1F05BFF6263B9CF700B909EF /* QuestionDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F05BFF5263B9CF700B909EF /* QuestionDetails.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,8 @@
 		1F05BFD7263B79F400B909EF /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		1F05BFE4263B8F0F00B909EF /* HomePageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageVC.swift; sourceTree = "<group>"; };
 		1F05BFEB263B948400B909EF /* QuestionsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionsVC.swift; sourceTree = "<group>"; };
+		1F05BFF1263B972E00B909EF /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		1F05BFF5263B9CF700B909EF /* QuestionDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionDetails.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +106,7 @@
 			children = (
 				1F05BFEE263B948C00B909EF /* Table VCs */,
 				1F05BFEB263B948400B909EF /* QuestionsVC.swift */,
+				1F05BFF5263B9CF700B909EF /* QuestionDetails.swift */,
 			);
 			path = "Creating Quiz";
 			sourceTree = "<group>";
@@ -109,6 +114,7 @@
 		1F05BFEE263B948C00B909EF /* Table VCs */ = {
 			isa = PBXGroup;
 			children = (
+				1F05BFF1263B972E00B909EF /* TableViewCell.swift */,
 			);
 			path = "Table VCs";
 			sourceTree = "<group>";
@@ -185,7 +191,9 @@
 			files = (
 				1F05BFD8263B79F400B909EF /* Models.swift in Sources */,
 				1F05BFEC263B948400B909EF /* QuestionsVC.swift in Sources */,
+				1F05BFF6263B9CF700B909EF /* QuestionDetails.swift in Sources */,
 				1F05BFB9263B6AF800B909EF /* AppDelegate.swift in Sources */,
+				1F05BFF2263B972E00B909EF /* TableViewCell.swift in Sources */,
 				1F05BFE5263B8F0F00B909EF /* HomePageVC.swift in Sources */,
 				1F05BFBB263B6AF800B909EF /* SceneDelegate.swift in Sources */,
 			);
