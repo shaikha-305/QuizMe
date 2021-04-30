@@ -41,6 +41,7 @@ class QuestionDetails: UIViewController {
             radioB.isSelected = false
             radioC.isSelected = false
             question.correctAnswer = answerA.text ?? "Answer A"
+            print(question.correctAnswer, "⚡️✅")
         }
     }
     @IBAction func radioBtnB(_ sender: UIButton) {
@@ -52,7 +53,8 @@ class QuestionDetails: UIViewController {
             sender.isSelected = true
             radioA.isSelected = false
             radioC.isSelected = false
-            question.correctAnswer = answerA.text ?? "Answer B"
+            question.correctAnswer = answerB.text ?? "Answer B"
+            
         }
     }
     @IBAction func radioBtnC(_ sender: UIButton) {
@@ -64,7 +66,7 @@ class QuestionDetails: UIViewController {
             sender.isSelected = true
             radioB.isSelected = false
             radioA.isSelected = false
-            question.correctAnswer = answerA.text ?? "Answer C"
+            question.correctAnswer = answerC.text ?? "Answer C"
 
         }
     }

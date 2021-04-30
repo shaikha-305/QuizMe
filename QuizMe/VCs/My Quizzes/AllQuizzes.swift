@@ -11,7 +11,7 @@ class AllQuizzes: UIViewController, UITableViewDelegate, UITableViewDataSource{
     
     var cardIndex = 0
     var buttonSoundEffect: AVAudioPlayer?
-
+    var attempts: Int!
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,6 +53,7 @@ class AllQuizzes: UIViewController, UITableViewDelegate, UITableViewDataSource{
         }
         performSegue(withIdentifier: "startQuiz", sender: cardIndex)
     }
+   
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "quizDetails"{
             let vc = segue.destination as! QuizDetails
@@ -64,6 +65,9 @@ class AllQuizzes: UIViewController, UITableViewDelegate, UITableViewDataSource{
             vc.selectedQuiz = quizzes[index]
         }
     }
+    
+   
+    
     /*
     // MARK: - Navigation
 

@@ -6,24 +6,27 @@
 //
 
 import UIKit
+import AVFoundation
+
+var selectedAnswer = ""
 
 class AttemptingVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    
-    var currentQ: Question!
-    var selectedQuiz: Quiz!
-   
-//    @IBOutlet weak var radioA: UIButton!
-//    @IBOutlet weak var radioB: UIButton!
-//    @IBOutlet weak var radioC: UIButton!
-    @IBOutlet weak var tableView: UITableView!
-//    @IBOutlet weak var answerALbl: UILabel!
-//    @IBOutlet weak var answerBLbl: UILabel!
-//    @IBOutlet weak var answerCLbl: UILabel!
-   
-//    let answerALbl =
-    var selectedAnswer = ""
-    override func viewDidLoad() {
+    var cardIndex: Int!
 
+    var currentQ: Question!
+    var selectedQuiz: Quiz! = Quiz(name: "", questions: [])
+    var correctAns: [Int]! = []
+    var finalGrade: String!
+    var allGrades: Int!
+    var randomQ: [Question]!
+    
+    @IBOutlet weak var tableView: UITableView!
+
+   
+    override func viewDidLoad() {
+        cardIndex = nil
+        let randomQ = selectedQuiz.questions.shuffled()
+        self.randomQ = randomQ
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
@@ -31,41 +34,70 @@ class AttemptingVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        selectedQuiz.questions.count
+        randomQ.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "QuizCell") as! QuizCell
 //        let randomQ = selectedQuiz.questions.randomElement()
-        let randomQ = selectedQuiz.questions.shuffled()
+//        cardIndex = indexPath.row
         currentQ = randomQ[indexPath.row]
-        let shuffledAns = randomQ[indexPath.row].answers.shuffled()
-        cell.questionLbl.text = randomQ[indexPath.row].question
+        print("⚡️⚡️⚡️⚡️⚡️⚡️⚡️")
+        print(currentQ)
+        let shuffledAns = currentQ.answers.shuffled()
+        print(shuffledAns)
+        cell.questionLbl.text = currentQ.question
         cell.answerALbl.text = shuffledAns[0]
         cell.answerBLbl.text = shuffledAns[1]
         cell.answerCLbl.text = shuffledAns[2]
-//        cell.answerALbl.text = answerALbl
-//        cell.answerBLbl.text = answerBLbl
-//        cell.answerCLbl.text = answerCLbl
-//        cell.radioA = radioA
-//        cell.radioB = radioB
-//        cell.radioC = radioC
-
         return cell
     }
    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let rotationTransform = CATransform3DTranslate(CATransform3DIdentity, -500, 10, 0)
+        cell.layer.transform = rotationTransform
+        UIView.animate(withDuration: 1.0) {
+            cell.layer.transform = CATransform3DIdentity
+        }
+    }
 
     
     @IBAction func submit(_ sender: Any) {
+        if cardIndex == nil{
+            cardIndex = 0
+        }else{
+            cardIndex! += 1
+        }
+        var currentQ = randomQ[cardIndex!]
         if selectedAnswer == currentQ.correctAnswer{
             selectedQuiz.grades += 1
             selectedQuiz.allGrades += 1
+            correctAns.append(0)
+            
+        }else{
+            correctAns.append(1)
         }
+        print(currentQ.question)
+        print("⚡️\(currentQ.correctAnswer)", "⚡️\(selectedAnswer)", correctAns, "⚡️⚡️")
     }
     
     @IBAction func submitQuiz(_ sender: Any) {
+        finalGrade = "\(selectedQuiz.grades)/\(selectedQuiz.questions.count)"
+        selectedQuiz.attempts += 1
+        performSegue(withIdentifier: "grades", sender: self)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "grades"{
+            let vc = segue.destination as! Grades
+            vc.answers = submittedAns
+            vc.correctAns = correctAns
+            vc.finalGrade = finalGrade
+            vc.quizAttempts = selectedQuiz.attempts
+            vc.allGrades = selectedQuiz.allGrades
+            vc.cardIndex = cardIndex
+        }
+    }
     /*
     // MARK: - Navigation
 

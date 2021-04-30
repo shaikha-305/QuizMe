@@ -24,6 +24,8 @@
 		1FDE5CC0263C153000532DA8 /* Button-soundEffect.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1FDE5CBF263C153000532DA8 /* Button-soundEffect.mp3 */; };
 		1FDE5CC4263C15F000532DA8 /* AttemptingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FDE5CC3263C15F000532DA8 /* AttemptingVC.swift */; };
 		1FDE5CD2263C3D6500532DA8 /* QuizCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FDE5CD1263C3D6500532DA8 /* QuizCell.swift */; };
+		1FDE5CD8263C6F4B00532DA8 /* AnswersCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FDE5CD7263C6F4B00532DA8 /* AnswersCell.swift */; };
+		1FDE5CDC263C700A00532DA8 /* Grades.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FDE5CDB263C700A00532DA8 /* Grades.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +48,8 @@
 		1FDE5CBF263C153000532DA8 /* Button-soundEffect.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Button-soundEffect.mp3"; sourceTree = "<group>"; };
 		1FDE5CC3263C15F000532DA8 /* AttemptingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttemptingVC.swift; sourceTree = "<group>"; };
 		1FDE5CD1263C3D6500532DA8 /* QuizCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizCell.swift; sourceTree = "<group>"; };
+		1FDE5CD7263C6F4B00532DA8 /* AnswersCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswersCell.swift; sourceTree = "<group>"; };
+		1FDE5CDB263C700A00532DA8 /* Grades.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Grades.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +98,7 @@
 		1F05BFD0263B79A400B909EF /* VCs */ = {
 			isa = PBXGroup;
 			children = (
+				1FDE5CD6263C6F1200532DA8 /* Grade */,
 				1FDE5CC2263C15D900532DA8 /* Attempting */,
 				1FDE5CAF263BB37100532DA8 /* My Quizzes */,
 				1F05BFEA263B945300B909EF /* Creating Quiz */,
@@ -170,6 +175,15 @@
 				1FDE5CD1263C3D6500532DA8 /* QuizCell.swift */,
 			);
 			path = TableVCs;
+			sourceTree = "<group>";
+		};
+		1FDE5CD6263C6F1200532DA8 /* Grade */ = {
+			isa = PBXGroup;
+			children = (
+				1FDE5CD7263C6F4B00532DA8 /* AnswersCell.swift */,
+				1FDE5CDB263C700A00532DA8 /* Grades.swift */,
+			);
+			path = Grade;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -250,8 +264,10 @@
 				1F05BFB9263B6AF800B909EF /* AppDelegate.swift in Sources */,
 				1F05BFF2263B972E00B909EF /* TableViewCell.swift in Sources */,
 				1F05BFE5263B8F0F00B909EF /* HomePageVC.swift in Sources */,
+				1FDE5CD8263C6F4B00532DA8 /* AnswersCell.swift in Sources */,
 				1FDE5CC4263C15F000532DA8 /* AttemptingVC.swift in Sources */,
 				1FDE5CD2263C3D6500532DA8 /* QuizCell.swift in Sources */,
+				1FDE5CDC263C700A00532DA8 /* Grades.swift in Sources */,
 				1F05BFBB263B6AF800B909EF /* SceneDelegate.swift in Sources */,
 				1FDE5CB1263BB39D00532DA8 /* AllQuizzes.swift in Sources */,
 				1FDE5CBA263BC2A000532DA8 /* QuizDetailsCell.swift in Sources */,

@@ -6,16 +6,15 @@
 //
 
 import UIKit
-var answerALbl = ""
-var answerBLbl = ""
-var answerCLbl = ""
-
-//var radioA: UIButton!
-//var radioB: UIButton!
-//var radioC: UIButton!
+//var answerALbl = ""
+//var answerBLbl = ""
+//var answerCLbl = ""
+var submittedAns: [String] = []
+import AVFoundation
 
 class QuizCell: UITableViewCell {
 
+    var buttonSoundEffect: AVAudioPlayer?
     @IBOutlet weak var questionLbl: UILabel!
     @IBOutlet weak var answerALbl: UILabel!
     @IBOutlet weak var answerBLbl: UILabel!
@@ -37,19 +36,39 @@ class QuizCell: UITableViewCell {
             sender.isSelected = true
             radioB.isSelected = false
             radioC.isSelected = false
-//            selectedAnswer = answerALbl
+            submittedAns.append(answerALbl.text ?? "")
+            selectedAnswer = answerALbl.text ?? ""
+            let path = Bundle.main.path(forResource: "Button-soundEffect.mp3", ofType:nil)!
+            let url = URL(fileURLWithPath: path)
+
+            do {
+                buttonSoundEffect = try AVAudioPlayer(contentsOf: url)
+                buttonSoundEffect?.play()
+            } catch {
+                // couldn't load file :(
+            }
         }
     }
     @IBAction func radioBtnB(_ sender: UIButton) {
         if sender.isSelected {
             sender.isSelected = false
-            radioB.isSelected = false
+            radioA.isSelected = false
             radioC.isSelected = false
         }else{
             sender.isSelected = true
-            radioB.isSelected = false
+            radioA.isSelected = false
             radioC.isSelected = false
-//            selectedAnswer = answerALbl
+            submittedAns.append(answerBLbl.text ?? "")
+            selectedAnswer = answerBLbl.text ?? ""
+            let path = Bundle.main.path(forResource: "Button-soundEffect.mp3", ofType:nil)!
+            let url = URL(fileURLWithPath: path)
+
+            do {
+                buttonSoundEffect = try AVAudioPlayer(contentsOf: url)
+                buttonSoundEffect?.play()
+            } catch {
+                // couldn't load file :(
+            }
         }
     }
     @IBAction func radioBtnC(_ sender: UIButton) {
@@ -61,7 +80,17 @@ class QuizCell: UITableViewCell {
             sender.isSelected = true
             radioB.isSelected = false
             radioA.isSelected = false
-//            selectedAnswer = answerCLbl
+            submittedAns.append(answerCLbl.text ?? "")
+            selectedAnswer = answerCLbl.text ?? ""
+            let path = Bundle.main.path(forResource: "Button-soundEffect.mp3", ofType:nil)!
+            let url = URL(fileURLWithPath: path)
+
+            do {
+                buttonSoundEffect = try AVAudioPlayer(contentsOf: url)
+                buttonSoundEffect?.play()
+            } catch {
+                // couldn't load file :(
+            }
         }
     }
     override func setSelected(_ selected: Bool, animated: Bool) {
