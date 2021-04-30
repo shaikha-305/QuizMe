@@ -19,6 +19,10 @@ class HomePageVC: UIViewController {
         performSegue(withIdentifier: "questions", sender: self)
     }
     
+    @IBAction func startQuiz(_ sender: Any) {
+        performSegue(withIdentifier: "allQuizzes", sender: self)
+
+    }
     
     /*
     // MARK: - Navigation

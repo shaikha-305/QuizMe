@@ -8,7 +8,7 @@
 import UIKit
 
 class QuestionDetails: UIViewController {
-    var quiz: Quiz!
+//    var quiz: Quiz!
     var question: Question! = Question(question: "", answers: [], correctAnswer: "")
     @IBOutlet weak var questionField: UITextField!
     @IBOutlet weak var answerA: UITextField!
@@ -95,12 +95,12 @@ class QuestionDetails: UIViewController {
         performSegue(withIdentifier: "back", sender: self)
     }
   
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "back"{
-            let vc = segue.destination as! QuestionsVC
-            vc.quiz = quiz
-        }
-    }
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.identifier == "back"{
+//            let vc = segue.destination as! QuestionsVC
+//            vc.quiz = quiz
+//        }
+//    }
     /*
     // MARK: - Navigation
 

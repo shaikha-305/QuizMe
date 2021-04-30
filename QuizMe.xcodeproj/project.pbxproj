@@ -17,6 +17,10 @@
 		1F05BFEC263B948400B909EF /* QuestionsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F05BFEB263B948400B909EF /* QuestionsVC.swift */; };
 		1F05BFF2263B972E00B909EF /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F05BFF1263B972E00B909EF /* TableViewCell.swift */; };
 		1F05BFF6263B9CF700B909EF /* QuestionDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F05BFF5263B9CF700B909EF /* QuestionDetails.swift */; };
+		1FDE5CB1263BB39D00532DA8 /* AllQuizzes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FDE5CB0263BB39D00532DA8 /* AllQuizzes.swift */; };
+		1FDE5CB6263BB46E00532DA8 /* MyQuizzesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FDE5CB5263BB46E00532DA8 /* MyQuizzesCell.swift */; };
+		1FDE5CBA263BC2A000532DA8 /* QuizDetailsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FDE5CB9263BC2A000532DA8 /* QuizDetailsCell.swift */; };
+		1FDE5CBD263BC3E100532DA8 /* QuizDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FDE5CBC263BC3E100532DA8 /* QuizDetails.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +36,10 @@
 		1F05BFEB263B948400B909EF /* QuestionsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionsVC.swift; sourceTree = "<group>"; };
 		1F05BFF1263B972E00B909EF /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		1F05BFF5263B9CF700B909EF /* QuestionDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionDetails.swift; sourceTree = "<group>"; };
+		1FDE5CB0263BB39D00532DA8 /* AllQuizzes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllQuizzes.swift; sourceTree = "<group>"; };
+		1FDE5CB5263BB46E00532DA8 /* MyQuizzesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQuizzesCell.swift; sourceTree = "<group>"; };
+		1FDE5CB9263BC2A000532DA8 /* QuizDetailsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizDetailsCell.swift; sourceTree = "<group>"; };
+		1FDE5CBC263BC3E100532DA8 /* QuizDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizDetails.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +87,7 @@
 		1F05BFD0263B79A400B909EF /* VCs */ = {
 			isa = PBXGroup;
 			children = (
+				1FDE5CAF263BB37100532DA8 /* My Quizzes */,
 				1F05BFEA263B945300B909EF /* Creating Quiz */,
 				1F05BFE7263B8F1300B909EF /* Home Page */,
 			);
@@ -115,6 +124,25 @@
 			isa = PBXGroup;
 			children = (
 				1F05BFF1263B972E00B909EF /* TableViewCell.swift */,
+			);
+			path = "Table VCs";
+			sourceTree = "<group>";
+		};
+		1FDE5CAF263BB37100532DA8 /* My Quizzes */ = {
+			isa = PBXGroup;
+			children = (
+				1FDE5CB4263BB44C00532DA8 /* Table VCs */,
+				1FDE5CB0263BB39D00532DA8 /* AllQuizzes.swift */,
+				1FDE5CBC263BC3E100532DA8 /* QuizDetails.swift */,
+			);
+			path = "My Quizzes";
+			sourceTree = "<group>";
+		};
+		1FDE5CB4263BB44C00532DA8 /* Table VCs */ = {
+			isa = PBXGroup;
+			children = (
+				1FDE5CB5263BB46E00532DA8 /* MyQuizzesCell.swift */,
+				1FDE5CB9263BC2A000532DA8 /* QuizDetailsCell.swift */,
 			);
 			path = "Table VCs";
 			sourceTree = "<group>";
@@ -190,12 +218,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				1F05BFD8263B79F400B909EF /* Models.swift in Sources */,
+				1FDE5CB6263BB46E00532DA8 /* MyQuizzesCell.swift in Sources */,
 				1F05BFEC263B948400B909EF /* QuestionsVC.swift in Sources */,
 				1F05BFF6263B9CF700B909EF /* QuestionDetails.swift in Sources */,
 				1F05BFB9263B6AF800B909EF /* AppDelegate.swift in Sources */,
 				1F05BFF2263B972E00B909EF /* TableViewCell.swift in Sources */,
 				1F05BFE5263B8F0F00B909EF /* HomePageVC.swift in Sources */,
 				1F05BFBB263B6AF800B909EF /* SceneDelegate.swift in Sources */,
+				1FDE5CB1263BB39D00532DA8 /* AllQuizzes.swift in Sources */,
+				1FDE5CBA263BC2A000532DA8 /* QuizDetailsCell.swift in Sources */,
+				1FDE5CBD263BC3E100532DA8 /* QuizDetails.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

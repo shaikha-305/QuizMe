@@ -6,10 +6,9 @@
 //
 
 import UIKit
-
+var quiz = Quiz(name: "", questions: [])
 class QuestionsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
    
-    var quiz = Quiz(name: "", questions: [])
 
     @IBOutlet var quizNameField: UITextField!
     @IBOutlet weak var tableView: UITableView!
@@ -44,14 +43,18 @@ class QuestionsVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
         
     }
     @IBAction func submitButton(_ sender: Any) {
-        quizNameField.text = quiz.name
+        quiz.name = quizNameField.text ?? "Quiz 1"
+        quizzes.append(quiz)
+        print(quiz.name, "⚡️")
+        performSegue(withIdentifier: "submitted", sender: self)
+
     }
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "questionDetails"{
-            let vc = segue.destination as! QuestionDetails
-            vc.quiz = quiz
-        }
-    }
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.identifier == "questionDetails"{
+//            let vc = segue.destination as! QuestionDetails
+//            vc.quiz = quiz
+//        }
+//    }
     /*
     // MARK: - Navigation
 

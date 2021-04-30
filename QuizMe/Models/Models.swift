@@ -7,10 +7,12 @@
 
 import Foundation
 
+var quizzes: [Quiz] = []
 struct Quiz{
     var name: String
     var questions: [Question]
     var attempts = 0
+    var grades = 0
 }
 
 struct Question{
