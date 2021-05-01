@@ -12,13 +12,19 @@ import UIKit
 var submittedAns: [String] = []
 import AVFoundation
 var pausedCounters = [Double]()
-
+var correctAnswers: [Int] = []
+var questionAttemptss = Double()
 class QuizCell: UITableViewCell {
 
     var timer = Timer()
     var isTimerRunning = false
     var counter = 0.0
     var buttonSoundEffect: AVAudioPlayer?
+    var cardIndex: Int!
+    var randomQ: [Question]!
+    var questionAttempts = Double()
+    var correctAns: [Int]!
+
     @IBOutlet weak var questionTimer: UILabel!
     @IBOutlet weak var startTimer: UIButton!
     @IBOutlet weak var pauseTimer: UIButton!
@@ -57,19 +63,52 @@ class QuizCell: UITableViewCell {
         }
     }
     @IBAction func pauseButton(_ sender: Any) {
-        if selectedQuiz.questions.count == pauseTimerCard{
+        if selectedQuizz.questions.count == pauseTimerCard{
             pauseTimerCard = Int()
         }
         pauseTimer.isEnabled = false
         if counter > Double(59){
             var seconds = counter*60
             pausedCounters.append(seconds)
+            randomQ[cardIndex].totalTime += seconds
         }else{
             pausedCounters.append(counter)
+            randomQ[cardIndex].totalTime += counter
         }
         isTimerRunning = false
         timer.invalidate()
-        print("⏰⏰", selectedQuiz.questions[pauseTimerCard].time, "⏰⏰")
+//        print("⏰⏰", selectedQuiz.questions[pauseTimerCard].time, "⏰⏰")
+        
+        
+        if randomQ.count <= cardIndex{
+            if cardIndex == nil{
+                cardIndex = 0
+                randomQ[cardIndex].questionAttempts += 1
+                cardIndex += 1
+                questionAttempts = Double(randomQ[cardIndex].questionAttempts)
+                questionAttemptss = Double(randomQ[cardIndex].questionAttempts)
+
+            }else{
+                cardIndex += 1
+                randomQ[cardIndex].questionAttempts += 1
+                questionAttempts = Double(randomQ[cardIndex].questionAttempts)
+                questionAttemptss = Double(randomQ[cardIndex].questionAttempts)
+            }
+        }
+            if selectedAnswer == randomQ[cardIndex].correctAnswer{
+            selectedQuizz.grades += 1
+            selectedQuizz.allGrades += 1
+            correctAns.append(0)
+            correctAnswers.append(0)
+
+        }else{
+            correctAns.append(1)
+            correctAnswers.append(1)
+
+        }
+//        correctAnswers = correctAns
+//        print(currentQ.question)
+//        print("⚡️\(currentQ.correctAnswer)", "⚡️\(selectedAnswer)", correctAns, "⚡️⚡️")
        
     }
     @IBAction func startTimerBtn(_ sender: Any) {

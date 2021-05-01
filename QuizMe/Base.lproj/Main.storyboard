@@ -228,7 +228,6 @@
                                                     <state key="normal" image="Group 11-3"/>
                                                     <connections>
                                                         <action selector="pauseButton:" destination="uhL-rv-Hvf" eventType="touchUpInside" id="ePK-eQ-3F9"/>
-                                                        <action selector="submit:" destination="dhS-zA-MSd" eventType="touchUpInside" id="ILr-FZ-XuT"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jtR-ze-Thw">
@@ -326,7 +325,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BXE-LN-SQO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="424.63768115942031" y="1216.7410714285713"/>
+            <point key="canvasLocation" x="471" y="1217"/>
         </scene>
         <!--Grades-->
         <scene sceneID="Vty-NK-x2r">
@@ -454,7 +453,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IR9-wv-r33" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1571.0144927536232" y="1216.7410714285713"/>
+            <point key="canvasLocation" x="1558" y="1217"/>
         </scene>
         <!--Quiz Details-->
         <scene sceneID="hKa-7t-vcN">
@@ -848,9 +847,9 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Jwf-uk-BBs"/>
+        <segue reference="U3V-zT-3J7"/>
         <segue reference="jAl-qQ-ouL"/>
-        <segue reference="tNG-i7-JNj"/>
+        <segue reference="byD-uI-26h"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Group 10" width="334" height="66"/>

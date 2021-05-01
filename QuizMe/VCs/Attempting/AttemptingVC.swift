@@ -8,32 +8,33 @@
 import UIKit
 import AVFoundation
 
-var cardIndex: Int!
+var cardIndex = Int()
 var selectedAnswer = ""
-var selectedQuiz: Quiz! = Quiz(name: String(), questions: [Question]())
+var selectedQuizz: Quiz! = Quiz(name: String(), questions: [Question]())
 var pauseTimerCard = Int()
 
 class AttemptingVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
-
-
+    
+    var selectedQuiz: Quiz!
     @IBOutlet weak var quizTimer: UILabel!
     var currentQ: Question!
     var timer = Timer()
     var isTimerRunning = false
     var counter = 0.0
-    var correctAns: [Int]! = []
+    var correctAns = [Int]()
     var finalGrade: String!
     var allGrades: Int!
     var randomQ: [Question]!
     var questionAttempts = Double()
     
     @IBOutlet weak var tableView: UITableView!
-
-   
+    
+    
     override func viewDidLoad() {
+//        self.selectedQuiz = selectedQuizz
         let randomQ = selectedQuiz.questions.shuffled()
         self.randomQ = randomQ
-        cardIndex = nil
+        cardIndex = Int()
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
@@ -53,7 +54,7 @@ class AttemptingVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         if second < 10{
             secondString = "0\(second)"
         }
-     
+        
         quizTimer.text = "\(minuteString):\(secondString)"
     }
     
@@ -63,18 +64,21 @@ class AttemptingVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "QuizCell") as! QuizCell
-        currentQ = randomQ[indexPath.row]
+        cell.cardIndex = indexPath.row
+        cell.randomQ = randomQ
+        cell.correctAns = correctAns
+//        currentQ = randomQ[cardIndex]
         print("⚡️⚡️⚡️⚡️⚡️⚡️⚡️")
-        print(currentQ)
-        let shuffledAns = currentQ.answers.shuffled()
+//        print("currentQ:", currentQ,  "cardIndex:", cardIndex)
+        let shuffledAns = randomQ[indexPath.row].answers.shuffled()
         print(shuffledAns)
-        cell.questionLbl.text = currentQ.question
+        cell.questionLbl.text = randomQ[indexPath.row].question
         cell.answerALbl.text = shuffledAns[0]
         cell.answerBLbl.text = shuffledAns[1]
         cell.answerCLbl.text = shuffledAns[2]
         return cell
     }
-   
+    
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let rotationTransform = CATransform3DTranslate(CATransform3DIdentity, -500, 10, 0)
         cell.layer.transform = rotationTransform
@@ -82,30 +86,8 @@ class AttemptingVC: UIViewController, UITableViewDelegate, UITableViewDataSource
             cell.layer.transform = CATransform3DIdentity
         }
     }
-
     
-    @IBAction func submit(_ sender: Any) {
-        if cardIndex == nil{
-            cardIndex = 0
-            randomQ[cardIndex].questionAttempts += 1
-            questionAttempts = Double(randomQ[cardIndex].questionAttempts)
-        }else{
-            cardIndex! += 1
-            randomQ[cardIndex].questionAttempts += 1
-            questionAttempts = Double(randomQ[cardIndex].questionAttempts)
-        }
-        var currentQ = randomQ[cardIndex!]
-        if selectedAnswer == currentQ.correctAnswer{
-            selectedQuiz.grades += 1
-            selectedQuiz.allGrades += 1
-            correctAns.append(0)
-            
-        }else{
-            correctAns.append(1)
-        }
-        print(currentQ.question)
-        print("⚡️\(currentQ.correctAnswer)", "⚡️\(selectedAnswer)", correctAns, "⚡️⚡️")
-    }
+    
     
     @IBAction func submitQuiz(_ sender: Any) {
         finalGrade = "\(selectedQuiz.grades)/\(selectedQuiz.questions.count)"
@@ -117,23 +99,23 @@ class AttemptingVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         if segue.identifier == "grades"{
             let vc = segue.destination as! Grades
             vc.answers = submittedAns
-            vc.correctAns = correctAns
+            vc.correctAns = correctAnswers
             vc.finalGrade = finalGrade
             vc.quizAttempts = selectedQuiz.attempts
             vc.allGrades = selectedQuiz.allGrades
-            vc.cardIndex = cardIndex
-            vc.questionAttempts = questionAttempts
+//            vc.cardIndex = cardIndex
+            vc.questionAttempts = questionAttemptss
             vc.qs = randomQ
         }
     }
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destination.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }

@@ -16,6 +16,7 @@ class Grades: UIViewController, UITableViewDelegate, UITableViewDataSource {
     var allGrades: Int!
     var cardIndex: Int!
     var counter = Int()
+    var index = Int()
     var qs = [Question]()
     var questionAttempts = Double()
     @IBOutlet weak var attempts: UILabel!
@@ -24,6 +25,15 @@ class Grades: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
+//        counter = 0
+       
+        
+        
+        
+        // Do any additional setup after loading the view.
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        index = 0
         let unique = Array(Set(answers))
         print(unique)
         tableView.delegate = self
@@ -31,10 +41,6 @@ class Grades: UIViewController, UITableViewDelegate, UITableViewDataSource {
         average.text = String(allGrades/quizAttempts)
         grade.text = finalGrade
         attempts.text = String(quizAttempts)
-        
-        
-        
-        // Do any additional setup after loading the view.
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -43,19 +49,21 @@ class Grades: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+//        index = indexPath.row
         let cell = tableView.dequeueReusableCell(withIdentifier: "answerCell") as! AnswersCell
-        let total = pausedCounters.reduce(qs[counter].totalTime, +)
+        cell.counter = indexPath.row
+        cell.qs = qs
+        cell.initialize()
         let questionTime = pausedCounters[counter]
         qs[counter].time = questionTime
-        counter = indexPath.row
         print("counter: \(counter)")
         let unique = Array(Set(answers))
-        print("correctAns[counter]: \(correctAns[counter])")
-        if correctAns[counter] == Int(){
+//        print("correctAns[counter]: \(correctAns[index])")
+        if correctAnswers.isEmpty{
             cell.yourAnswer.text = unique[indexPath.row]
             cell.answerImage.image = UIImage(named: "check")
-            
-        }else if correctAns[counter] == 0{
+        }else if correctAnswers[cell.counter] == 0{
             cell.yourAnswer.text = unique[indexPath.row]
             cell.answerImage.image = UIImage(named: "check")
         }else{
@@ -64,25 +72,17 @@ class Grades: UIViewController, UITableViewDelegate, UITableViewDataSource {
             cell.answerImage.image = UIImage(named: "cancel-mark")
         }
         
-        if total>60.0{
-            let average = qs[counter].time/questionAttempts
+        if totalP>60.0{
+            let average = qs[indexPath.row].time/Double(qs[indexPath.row].questionAttempts)
             let minutes = average/60
-//            var min = String(NSString(format: "%.2f", minutes))
             let minutesString = "\(minutes)"
             cell.questionAverage.text = "\(minutes) min"
-
         }else{
-            let average = qs[counter].time/questionAttempts
+            let average = qs[indexPath.row].time/Double(qs[indexPath.row].questionAttempts)
             print(average)
-//            let minutes = average/60
             let averageString = "\(average)"
             print(averageString)
-//            var min = String(NSString(format: "%.2f", averageString))
-//            var parts = min.components(separatedBy: ".")
-//            var finalAverage = min.split(separator: ".")
-//            print(finalAverage)
             cell.questionAverage.text = "\(averageString) sec"
-//            print("\(finalAverage[0]) min \(finalAverage[1]) sec")
         }
         return cell
     }
@@ -90,7 +90,7 @@ class Grades: UIViewController, UITableViewDelegate, UITableViewDataSource {
         answers = [String]()
         correctAns = [Int]()
         pausedCounters = [Double]()
-        counter = Int()
+        counter = 0
         performSegue(withIdentifier: "yay", sender: self)
     }
 //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

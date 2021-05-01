@@ -56,9 +56,10 @@ class AllQuizzes: UIViewController, UITableViewDelegate, UITableViewDataSource{
         if quizzes[indexPath.row].attempts != 0{
             var average = quizzes[indexPath.row].grades/quizzes[indexPath.row].attempts
             cell.averageGrades.text = String(average)
+        }else{
+            cell.averageGrades.text = "0"
         }
         cell.quizName.text = quizzes[indexPath.row].name
-        cell.averageGrades.text = "0"
         cell.attempts.text = String(quizzes[indexPath.row].attempts)
         return cell
     }
@@ -77,9 +78,10 @@ class AllQuizzes: UIViewController, UITableViewDelegate, UITableViewDataSource{
         } catch {
             // couldn't load file :(
         }
-        performSegue(withIdentifier: "startQuiz", sender: cardIndex)
+        performSegue(withIdentifier: "startQuiz", sender: self)
+//        performSegue(withIdentifier: "startQuiz", sender: cardIndex)
 //        let index = sender as! Int
-        selectedQuiz = quizzes[cardIndex]
+        selectedQuizz = quizzes[cardIndex]
 
     }
    
@@ -90,8 +92,7 @@ class AllQuizzes: UIViewController, UITableViewDelegate, UITableViewDataSource{
             vc.selectedQuiz = quizzes[index]
         }else if segue.identifier == "startQuiz"{
             let vc = segue.destination as! AttemptingVC
-            let index = sender as! Int
-//            vc.selectedQuiz = quizzes[index]
+            vc.selectedQuiz = quizzes[cardIndex]
         }
     }
     
