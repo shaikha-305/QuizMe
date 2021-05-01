@@ -83,6 +83,8 @@ class QuizCell: UITableViewCell {
         if randomQ.count <= cardIndex{
             if cardIndex == nil{
                 cardIndex = 0
+//                questionAttempts += Double(1)
+                                questionAttemptss = Double(randomQ[cardIndex].questionAttempts)
                 randomQ[cardIndex].questionAttempts += 1
                 cardIndex += 1
                 questionAttempts = Double(randomQ[cardIndex].questionAttempts)
@@ -90,6 +92,7 @@ class QuizCell: UITableViewCell {
 
             }else{
                 cardIndex += 1
+//                questionAttempts += Double(1)
                 randomQ[cardIndex].questionAttempts += 1
                 questionAttempts = Double(randomQ[cardIndex].questionAttempts)
                 questionAttemptss = Double(randomQ[cardIndex].questionAttempts)

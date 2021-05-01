@@ -25,19 +25,25 @@ class AttemptingVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     var finalGrade: String!
     var allGrades: Int!
     var randomQ: [Question]!
+    @IBOutlet weak var pause: UIButton!
     var questionAttempts = Double()
     
     @IBOutlet weak var tableView: UITableView!
     
     
     override func viewDidLoad() {
-//        self.selectedQuiz = selectedQuizz
+        //        self.selectedQuiz = selectedQuizz
         let randomQ = selectedQuiz.questions.shuffled()
         self.randomQ = randomQ
         cardIndex = Int()
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
+        if !isTimerRunning{
+            timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(runTimer), userInfo: nil, repeats: true)
+            isTimerRunning = true
+            quizTimer.isEnabled = false
+        }
         // Do any additional setup after loading the view.
     }
     @objc func runTimer(){
@@ -93,6 +99,22 @@ class AttemptingVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         finalGrade = "\(selectedQuiz.grades)/\(selectedQuiz.questions.count)"
         selectedQuiz.attempts += 1
         performSegue(withIdentifier: "grades", sender: self)
+        if selectedQuizz.questions.count == pauseTimerCard{
+                    pauseTimerCard = Int()
+                }
+                pause.isEnabled = false
+                if counter > Double(59){
+                    var seconds = counter*60
+                    pausedCounters.append(seconds)
+                    randomQ[cardIndex].totalTime += seconds
+                }else{
+                    pausedCounters.append(counter)
+                    randomQ[cardIndex].totalTime += counter
+                }
+                isTimerRunning = false
+                timer.invalidate()
+        
+               totalP = counter
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

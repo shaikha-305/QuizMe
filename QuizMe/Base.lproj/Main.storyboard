@@ -318,6 +318,7 @@
                         <color key="backgroundColor" red="0.91079074140000005" green="0.94849961999999999" blue="0.96526843309999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <connections>
+                        <outlet property="pause" destination="79a-Ep-sUG" id="o6Y-xx-Mbi"/>
                         <outlet property="quizTimer" destination="reI-zz-XFd" id="NmR-8J-ETw"/>
                         <outlet property="tableView" destination="hkx-Z4-Znq" id="nRl-bd-AFI"/>
                         <segue destination="cfd-47-ivo" kind="presentation" identifier="grades" modalPresentationStyle="fullScreen" id="zp5-rB-Pzv"/>
@@ -448,6 +449,7 @@
                         <outlet property="average" destination="THm-JL-wnh" id="DfK-8g-i7U"/>
                         <outlet property="grade" destination="TQd-SY-PM4" id="42d-ri-Apg"/>
                         <outlet property="tableView" destination="DJ3-4m-C0i" id="3G1-gq-roe"/>
+                        <outlet property="welp" destination="0MR-aJ-Dh2" id="6T8-ce-KTY"/>
                         <segue destination="kXM-F0-xvz" kind="presentation" identifier="yay" modalPresentationStyle="fullScreen" id="jAl-qQ-ouL"/>
                     </connections>
                 </viewController>

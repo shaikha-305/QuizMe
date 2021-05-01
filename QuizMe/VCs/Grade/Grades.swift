@@ -17,6 +17,7 @@ class Grades: UIViewController, UITableViewDelegate, UITableViewDataSource {
     var cardIndex: Int!
     var counter = Int()
     var index = Int()
+    @IBOutlet weak var welp: UILabel!
     var qs = [Question]()
     var questionAttempts = Double()
     @IBOutlet weak var attempts: UILabel!
@@ -41,6 +42,25 @@ class Grades: UIViewController, UITableViewDelegate, UITableViewDataSource {
         average.text = String(allGrades/quizAttempts)
         grade.text = finalGrade
         attempts.text = String(quizAttempts)
+        
+        
+        if totalP>60.0{
+            let averageCount = totalP! / Double(selectedQuizz.attempts)
+            let minutes = averageCount/60
+            let minutesString = "\(minutes)"
+            average.text = "2:0 min"
+            welp.text = "2:94"
+        }else{
+           let averageCount = totalP! / Double(selectedQuizz.attempts)
+//            let minutes = averageCount/60
+//            let minutesString = "\(minutes)"
+            average.text = "2:0 sec"
+            
+//            let average = qs[indexPath.row].time/Double(qs[indexPath.row].questionAttempts)
+//            print(average)
+//            let averageString = "\(average)"
+//            cell.questionAverage.text = "\(averageString) sec"
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -49,7 +69,7 @@ class Grades: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
+        print("🧢" , questionAttempts)
 //        index = indexPath.row
         let cell = tableView.dequeueReusableCell(withIdentifier: "answerCell") as! AnswersCell
         cell.counter = indexPath.row
@@ -71,7 +91,7 @@ class Grades: UIViewController, UITableViewDelegate, UITableViewDataSource {
             cell.yourAnswer.text = unique[indexPath.row]
             cell.answerImage.image = UIImage(named: "cancel-mark")
         }
-        
+      
         if totalP>60.0{
             let average = qs[indexPath.row].time/Double(qs[indexPath.row].questionAttempts)
             let minutes = average/60
@@ -84,6 +104,7 @@ class Grades: UIViewController, UITableViewDelegate, UITableViewDataSource {
             print(averageString)
             cell.questionAverage.text = "\(averageString) sec"
         }
+      //  cell.questionAverage =
         return cell
     }
     @IBAction func done(_ sender: Any) {
@@ -93,21 +114,6 @@ class Grades: UIViewController, UITableViewDelegate, UITableViewDataSource {
         counter = 0
         performSegue(withIdentifier: "yay", sender: self)
     }
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "yay"{
-////            submittedQuiz.attempts = quizAttempts
-//            let vc = segue.destination as! AllQuizzes
-////            vc.attempts = quizAttempts
-//        }
-//    }
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
