@@ -9,7 +9,7 @@ import UIKit
 var quiz = Quiz(name: "", questions: [])
 class QuestionsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
    
-
+    var update: (() -> Void)?
     @IBOutlet var quizNameField: UITextField!
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
@@ -19,11 +19,18 @@ class QuestionsVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
         self.tableView.reloadData()
         // Do any additional setup after loading the view.
     }
-//    DispatchQueue.main.async {
-//       self.tableView.reloadData()
-//    }
     
     
+//    @objc func saveQuiz() {
+//
+//       guard let count = UserDefaults().value(forKey: "quiz") as? Quiz
+//       else{return}
+//        let newCount = quizzes.count + 1
+//        UserDefaults().set(newCount, forKey: "quiz")
+////        UserDefaults().set(text, forKey: "task(newCount)")
+//        update?()
+////        navigationController?.popViewController(animated: true)
+//        }
     @IBAction func addQuestion(_ sender: Any) {
         performSegue(withIdentifier: "questionDetails", sender: self)
     }
@@ -43,19 +50,25 @@ class QuestionsVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
         
     }
     @IBAction func submitButton(_ sender: Any) {
+        
         quiz.name = quizNameField.text ?? "Quiz 1"
         quizzes.append(quiz)
+//        DispatchQueue.main.async {
+//           self.tableView.reloadData()
+//        }
+//        saveQuiz()
+        
         quiz = Quiz(name: "", questions: [])
         print(quiz.name, "⚡️")
         performSegue(withIdentifier: "submitted", sender: self)
-
+        
     }
 //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 //        if segue.identifier == "questionDetails"{
 //            let vc = segue.destination as! QuestionDetails
 //            vc.quiz = quiz
 //        }
-//    }
+    }
     /*
     // MARK: - Navigation
 
@@ -66,4 +79,4 @@ class QuestionsVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
     }
     */
 
-}
+

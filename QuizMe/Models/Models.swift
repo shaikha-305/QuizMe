@@ -20,4 +20,8 @@ struct Question{
     var question: String
     var answers: [String]
     var correctAnswer: String
+    var averageTime = 0.0
+    var totalTime = 0.0
+    var time = 0.0
+    var questionAttempts = 0
 }

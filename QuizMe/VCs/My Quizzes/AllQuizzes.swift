@@ -9,17 +9,43 @@ import UIKit
 import AVFoundation
 class AllQuizzes: UIViewController, UITableViewDelegate, UITableViewDataSource{
     
-    var cardIndex = 0
     var buttonSoundEffect: AVAudioPlayer?
+    var cardIndex = 0
     var attempts: Int!
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
+        
+//        self.title = "Quizzes"
+//                tableView.delegate = self
+//                tableView.dataSource = self
+//                // Setup
+//                if !UserDefaults().bool(forKey: "setup") {
+//                    UserDefaults().set(true, forKey: "setup")
+//                    UserDefaults().set(0, forKey: "quiz")
+//                }
+//
+//                // Get all current saved quizzes
+//                updateQuizzes()
         // Do any additional setup after loading the view.
     }
     
+//    func updateQuizzes(){
+//
+////           quizzes.removeAll()
+//           guard let quiz = UserDefaults().value(forKey: "quiz") as? Quiz else{
+//               return
+//           }
+//
+//        for x in 0..<quizzes.count{
+//               if let quiz = UserDefaults().value(forKey: "quiz_\(x+1)") as? Quiz {
+//                   quizzes.append(quiz)
+//               }
+//           }
+//           tableView.reloadData()
+//       }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         quizzes.count
     }
@@ -52,6 +78,9 @@ class AllQuizzes: UIViewController, UITableViewDelegate, UITableViewDataSource{
             // couldn't load file :(
         }
         performSegue(withIdentifier: "startQuiz", sender: cardIndex)
+//        let index = sender as! Int
+        selectedQuiz = quizzes[cardIndex]
+
     }
    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -62,7 +91,7 @@ class AllQuizzes: UIViewController, UITableViewDelegate, UITableViewDataSource{
         }else if segue.identifier == "startQuiz"{
             let vc = segue.destination as! AttemptingVC
             let index = sender as! Int
-            vc.selectedQuiz = quizzes[index]
+//            vc.selectedQuiz = quizzes[index]
         }
     }
     

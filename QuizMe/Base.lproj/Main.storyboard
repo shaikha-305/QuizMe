@@ -218,12 +218,16 @@
                                                     <rect key="frame" x="42" y="90" width="70" height="27"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <state key="normal" image="Group 10-1"/>
+                                                    <connections>
+                                                        <action selector="startTimerBtn:" destination="uhL-rv-Hvf" eventType="touchUpInside" id="PGp-1R-CrS"/>
+                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lkK-HD-4Dn">
                                                     <rect key="frame" x="196" y="90" width="70" height="27"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <state key="normal" image="Group 11-3"/>
                                                     <connections>
+                                                        <action selector="pauseButton:" destination="uhL-rv-Hvf" eventType="touchUpInside" id="ePK-eQ-3F9"/>
                                                         <action selector="submit:" destination="dhS-zA-MSd" eventType="touchUpInside" id="ILr-FZ-XuT"/>
                                                     </connections>
                                                 </button>
@@ -254,6 +258,13 @@
                                                         <action selector="radioBtnA:" destination="uhL-rv-Hvf" eventType="touchUpInside" id="k1R-Vt-ZTm"/>
                                                     </connections>
                                                 </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uhc-4z-aws">
+                                                    <rect key="frame" x="131" y="93" width="49" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <color key="backgroundColor" red="0.97247463460000005" green="0.97259098290000001" blue="0.97243505720000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </tableViewCellContentView>
@@ -261,10 +272,13 @@
                                             <outlet property="answerALbl" destination="JhN-XL-3bw" id="8aH-VE-IVB"/>
                                             <outlet property="answerBLbl" destination="AGl-se-7dj" id="ZRk-n8-F18"/>
                                             <outlet property="answerCLbl" destination="J18-eD-pMq" id="v13-LR-mea"/>
+                                            <outlet property="pauseTimer" destination="lkK-HD-4Dn" id="xHF-wO-zoy"/>
                                             <outlet property="questionLbl" destination="1D3-3i-uMs" id="OL4-0a-QUn"/>
+                                            <outlet property="questionTimer" destination="Uhc-4z-aws" id="2hM-4k-7dn"/>
                                             <outlet property="radioA" destination="pn4-Yc-jdy" id="1BL-oa-2wJ"/>
                                             <outlet property="radioB" destination="jtR-ze-Thw" id="OFA-Pg-341"/>
                                             <outlet property="radioC" destination="uKP-Kd-bMh" id="G44-9E-MDq"/>
+                                            <outlet property="startTimer" destination="9Mi-wj-pBk" id="nd9-KS-RRO"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -293,11 +307,19 @@
                                     <segue destination="kXM-F0-xvz" kind="presentation" modalPresentationStyle="fullScreen" id="kfz-AX-WXc"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="reI-zz-XFd">
+                                <rect key="frame" x="316" y="92" width="49" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="aR8-bs-Fpc"/>
                         <color key="backgroundColor" red="0.91079074140000005" green="0.94849961999999999" blue="0.96526843309999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <connections>
+                        <outlet property="quizTimer" destination="reI-zz-XFd" id="NmR-8J-ETw"/>
                         <outlet property="tableView" destination="hkx-Z4-Znq" id="nRl-bd-AFI"/>
                         <segue destination="cfd-47-ivo" kind="presentation" identifier="grades" modalPresentationStyle="fullScreen" id="zp5-rB-Pzv"/>
                     </connections>
@@ -368,11 +390,28 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="AVERAGE TIME" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ayU-Hh-AD0">
+                                                    <rect key="frame" x="84" y="43" width="119" height="32"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
+                                                    <color key="textColor" red="0.77299863099999999" green="0.74401378630000004" blue="0.77772372960000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="00:00" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7c9-gr-FEp">
+                                                    <rect key="frame" x="195" y="43" width="96" height="32"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
+                                                    <color key="textColor" red="0.77299863099999999" green="0.74401378630000004" blue="0.77772372960000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="answerImage" destination="0Jc-Qo-Wxk" id="KlA-Js-AQ3"/>
+                                            <outlet property="questionAverage" destination="7c9-gr-FEp" id="fUw-1p-dwt"/>
                                             <outlet property="yourAnswer" destination="rmi-IC-kkh" id="qwV-xE-SGY"/>
                                         </connections>
                                     </tableViewCell>
@@ -385,6 +424,22 @@
                                     <action selector="done:" destination="cfd-47-ivo" eventType="touchUpInside" id="idx-8s-6lM"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="AVERAGE TIME" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pSq-B8-uHC">
+                                <rect key="frame" x="119" y="443" width="178" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
+                                <color key="textColor" red="0.77299863099999999" green="0.74401378630000004" blue="0.77772372960000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0MR-aJ-Dh2">
+                                <rect key="frame" x="158" y="473" width="103" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                <color key="textColor" red="0.77299863099999999" green="0.74401378630000004" blue="0.77772372960000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="h84-QY-BRB"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -795,7 +850,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="Jwf-uk-BBs"/>
         <segue reference="jAl-qQ-ouL"/>
-        <segue reference="byD-uI-26h"/>
+        <segue reference="tNG-i7-JNj"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Group 10" width="334" height="66"/>

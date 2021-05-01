@@ -11,10 +11,17 @@ import UIKit
 //var answerCLbl = ""
 var submittedAns: [String] = []
 import AVFoundation
+var pausedCounters = [Double]()
 
 class QuizCell: UITableViewCell {
 
+    var timer = Timer()
+    var isTimerRunning = false
+    var counter = 0.0
     var buttonSoundEffect: AVAudioPlayer?
+    @IBOutlet weak var questionTimer: UILabel!
+    @IBOutlet weak var startTimer: UIButton!
+    @IBOutlet weak var pauseTimer: UIButton!
     @IBOutlet weak var questionLbl: UILabel!
     @IBOutlet weak var answerALbl: UILabel!
     @IBOutlet weak var answerBLbl: UILabel!
@@ -48,6 +55,46 @@ class QuizCell: UITableViewCell {
                 // couldn't load file :(
             }
         }
+    }
+    @IBAction func pauseButton(_ sender: Any) {
+        if selectedQuiz.questions.count == pauseTimerCard{
+            pauseTimerCard = Int()
+        }
+        pauseTimer.isEnabled = false
+        if counter > Double(59){
+            var seconds = counter*60
+            pausedCounters.append(seconds)
+        }else{
+            pausedCounters.append(counter)
+        }
+        isTimerRunning = false
+        timer.invalidate()
+        print("⏰⏰", selectedQuiz.questions[pauseTimerCard].time, "⏰⏰")
+       
+    }
+    @IBAction func startTimerBtn(_ sender: Any) {
+        if !isTimerRunning{
+            timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(runTimer), userInfo: nil, repeats: true)
+            isTimerRunning = true
+            startTimer.isEnabled = false
+        }
+    }
+    @objc func runTimer(){
+        counter += 0.1
+        
+        let flooredCounter = Int(floor(counter))
+        let minute = (flooredCounter % 3600)/60
+        var minuteString = "\(minute)"
+        if minute < 10{
+            minuteString = "0\(minute)"
+        }
+        let second = (flooredCounter % 3600)%60
+        var secondString = "\(second)"
+        if second < 10{
+            secondString = "0\(second)"
+        }
+     
+        questionTimer.text = "\(minuteString):\(secondString)"
     }
     @IBAction func radioBtnB(_ sender: UIButton) {
         if sender.isSelected {

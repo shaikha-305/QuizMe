@@ -8,29 +8,53 @@
 import UIKit
 import AVFoundation
 
+var cardIndex: Int!
 var selectedAnswer = ""
+var selectedQuiz: Quiz! = Quiz(name: String(), questions: [Question]())
+var pauseTimerCard = Int()
 
 class AttemptingVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    var cardIndex: Int!
 
+
+    @IBOutlet weak var quizTimer: UILabel!
     var currentQ: Question!
-    var selectedQuiz: Quiz! = Quiz(name: "", questions: [])
+    var timer = Timer()
+    var isTimerRunning = false
+    var counter = 0.0
     var correctAns: [Int]! = []
     var finalGrade: String!
     var allGrades: Int!
     var randomQ: [Question]!
+    var questionAttempts = Double()
     
     @IBOutlet weak var tableView: UITableView!
 
    
     override func viewDidLoad() {
-        cardIndex = nil
         let randomQ = selectedQuiz.questions.shuffled()
         self.randomQ = randomQ
+        cardIndex = nil
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
         // Do any additional setup after loading the view.
+    }
+    @objc func runTimer(){
+        counter += 0.1
+        
+        let flooredCounter = Int(floor(counter))
+        let minute = (flooredCounter % 3600)/60
+        var minuteString = "\(minute)"
+        if minute < 10{
+            minuteString = "0\(minute)"
+        }
+        let second = (flooredCounter % 3600)%60
+        var secondString = "\(second)"
+        if second < 10{
+            secondString = "0\(second)"
+        }
+     
+        quizTimer.text = "\(minuteString):\(secondString)"
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -39,8 +63,6 @@ class AttemptingVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "QuizCell") as! QuizCell
-//        let randomQ = selectedQuiz.questions.randomElement()
-//        cardIndex = indexPath.row
         currentQ = randomQ[indexPath.row]
         print("⚡️⚡️⚡️⚡️⚡️⚡️⚡️")
         print(currentQ)
@@ -65,8 +87,12 @@ class AttemptingVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     @IBAction func submit(_ sender: Any) {
         if cardIndex == nil{
             cardIndex = 0
+            randomQ[cardIndex].questionAttempts += 1
+            questionAttempts = Double(randomQ[cardIndex].questionAttempts)
         }else{
             cardIndex! += 1
+            randomQ[cardIndex].questionAttempts += 1
+            questionAttempts = Double(randomQ[cardIndex].questionAttempts)
         }
         var currentQ = randomQ[cardIndex!]
         if selectedAnswer == currentQ.correctAnswer{
@@ -96,6 +122,8 @@ class AttemptingVC: UIViewController, UITableViewDelegate, UITableViewDataSource
             vc.quizAttempts = selectedQuiz.attempts
             vc.allGrades = selectedQuiz.allGrades
             vc.cardIndex = cardIndex
+            vc.questionAttempts = questionAttempts
+            vc.qs = randomQ
         }
     }
     /*

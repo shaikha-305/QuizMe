@@ -11,6 +11,8 @@ class AnswersCell: UITableViewCell {
 
     @IBOutlet weak var answerImage: UIImageView!
     @IBOutlet weak var yourAnswer: UILabel!
+    @IBOutlet weak var questionAverage: UILabel!
+
     
     override func awakeFromNib() {
         super.awakeFromNib()
